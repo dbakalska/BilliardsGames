@@ -10,6 +10,7 @@ abstract class BilliardsTable
 {
     protected $pockets;
     protected $dimensions;
+    protected $startingPoint;
 
     /**
      * BilliardsTable constructor.
