@@ -6,6 +6,9 @@
  * Date: 10/28/2016
  * Time: 10:57 AM
  */
+
+namespace src\Table;
+
 class PoolTable extends BilliardsTable
 {
 

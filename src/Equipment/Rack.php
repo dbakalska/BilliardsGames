@@ -6,6 +6,9 @@
  * Date: 10/28/2016
  * Time: 5:10 PM
  */
+
+namespace scr\Equipment;
+
 class Rack
 {
     protected $material;

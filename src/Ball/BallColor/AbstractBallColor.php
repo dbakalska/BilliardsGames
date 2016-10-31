@@ -6,6 +6,9 @@
  * Date: 10/28/2016
  * Time: 4:53 PM
  */
+
+namespace scr\Ball\BallColor;
+
 class AbstractBallColor
 {
     protected $white;

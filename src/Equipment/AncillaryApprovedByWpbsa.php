@@ -6,7 +6,10 @@
  * Date: 10/28/2016
  * Time: 11:39 AM
  */
-class AncillaryAproovedByWpbsa
+
+namespace scr\Equipment;
+
+class AncillaryApprovedByWpbsa
 {
     protected $crossheadRest;
     protected $cueExtension;
@@ -15,7 +18,4 @@ class AncillaryAproovedByWpbsa
     protected $longExtendableSpider;
     protected $spider;
     protected $swanNeckSpider;
-
-
-
 }

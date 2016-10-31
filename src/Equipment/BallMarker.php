@@ -6,6 +6,9 @@
  * Date: 10/28/2016
  * Time: 5:16 PM
  */
+
+namespace scr\Equipment;
+
 class BallMarker
 {
 

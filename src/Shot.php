@@ -6,6 +6,9 @@
  * Date: 10/28/2016
  * Time: 5:54 PM
  */
+
+namespace src;
+
 class Shot
 {
     protected $horizontalX;

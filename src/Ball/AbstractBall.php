@@ -6,6 +6,9 @@
  * Date: 10/27/2016
  * Time: 6:23 PM
  */
+
+namespace scr\Ball;
+
 abstract class AbstractBall
 {
     protected $color;

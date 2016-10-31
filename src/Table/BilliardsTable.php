@@ -6,6 +6,9 @@
  * Date: 10/27/2016
  * Time: 6:22 PM
  */
+
+namespace src\Table;
+
 abstract class BilliardsTable
 {
     protected $pockets;

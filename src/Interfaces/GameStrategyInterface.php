@@ -6,6 +6,8 @@
  * Time: 10:54 AM
  */
 
+namespace scr\Interfaces;
+
 interface GameStrategyInterface
 {
 
