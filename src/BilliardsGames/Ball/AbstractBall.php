@@ -7,7 +7,7 @@
  * Time: 6:23 PM
  */
 
-namespace scr\Ball;
+namespace BilliardsGames\Ball;
 
 abstract class AbstractBall
 {

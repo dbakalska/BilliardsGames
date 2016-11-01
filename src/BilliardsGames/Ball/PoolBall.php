@@ -7,7 +7,7 @@
  * Time: 3:29 PM
  */
 
-namespace scr\Ball;
+namespace BilliardsGames\Ball;
 
 class PoolBall extends AbstractBall
 {

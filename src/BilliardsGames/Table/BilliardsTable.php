@@ -7,7 +7,7 @@
  * Time: 6:22 PM
  */
 
-namespace src\Table;
+namespace BilliardsGames\Table;
 
 abstract class BilliardsTable
 {

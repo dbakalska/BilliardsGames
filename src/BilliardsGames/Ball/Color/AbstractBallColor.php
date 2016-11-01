@@ -7,7 +7,7 @@
  * Time: 4:53 PM
  */
 
-namespace scr\Ball\BallColor;
+namespace BilliardsGames\Ball\Color;
 
 class AbstractBallColor
 {

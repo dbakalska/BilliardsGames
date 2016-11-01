@@ -7,9 +7,9 @@
  * Time: 10:57 AM
  */
 
-namespace src\Table;
+namespace BilliardsGames\Table;
 
-class PoolTable extends BilliardsTable
+class SnookerTable extends BilliardsTable
 {
 
 }

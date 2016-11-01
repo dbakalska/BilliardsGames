@@ -7,7 +7,7 @@
  * Time: 5:54 PM
  */
 
-namespace src;
+namespace BilliardsGames\Shot;
 
 class Shot
 {

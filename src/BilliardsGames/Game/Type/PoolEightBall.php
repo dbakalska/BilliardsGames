@@ -7,9 +7,9 @@
  * Time: 3:55 PM
  */
 
-namespace scr\GameType;
+namespace BilliardsGames\Game\Type;
 
-class Snooker
+class PoolEightBall
 {
 
 }

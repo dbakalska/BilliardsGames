@@ -4,12 +4,12 @@
  * Created by PhpStorm.
  * User: Diana Bakalska
  * Date: 10/28/2016
- * Time: 3:55 PM
+ * Time: 10:57 AM
  */
 
-namespace scr\GameType;
+namespace BilliardsGames\Table;
 
-class PoolNineBall
+class PoolTable extends BilliardsTable
 {
 
 }
