@@ -12,4 +12,20 @@ interface GameCharacteristicsInterface
 {
     public function startOfTheGame();
 
+    public function breakShot();
+
+    public function isLegalShot();
+
+    public function ballPotted();
+
+    public function foul();
+
+    public function ballOn();
+
+    public function nextShot();
+
+    public function break();
+
+    public function playersTurn();
+
 }
