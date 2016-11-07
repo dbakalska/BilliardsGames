@@ -9,54 +9,10 @@
 
 namespace BilliardsGames\Game\Type;
 
-use BilliardsGames\Game\GameCharacteristicsInterface;
+use BilliardsGames\Game\Game;
 
-class PoolEightBall implements GameCharacteristicsInterface
+class PoolEightBall extends Game
 {
-    public function startOfTheGame()
-    {
-        // TODO: Implement startOfTheGame() method.
-    }
-
-    public function breakShot()
-    {
-        // TODO: Implement breakShot() method.
-    }
-
-    public function isLegalShot()
-    {
-        // TODO: Implement isLegalShot() method.
-    }
-
-    public function ballPotted()
-    {
-        // TODO: Implement ballPotted() method.
-    }
-
-    public function foul()
-    {
-        // TODO: Implement foul() method.
-    }
-
-    public function ballOn()
-    {
-        // TODO: Implement ballOn() method.
-    }
-
-    public function nextShot()
-    {
-        // TODO: Implement nextShot() method.
-    }
-
-    public function break()
-    {
-        // TODO: Implement break() method.
-    }
-
-    public function playersTurn()
-    {
-        // TODO: Implement playersTurn() method.
-    }
 
 
 }

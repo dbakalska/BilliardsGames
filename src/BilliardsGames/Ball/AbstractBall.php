@@ -18,6 +18,7 @@ abstract class AbstractBall
     protected $positionX;
     protected $positionY;
     protected $texture;
+    protected $speed;
 
     /**
      * AbstractBall constructor.
@@ -29,7 +30,7 @@ abstract class AbstractBall
      * @param $positionY
      * @param $texture
      */
-    public function __construct($color, $number, $width, $height, $positionX, $positionY, $texture)
+    public function __construct($color, $number, $width, $height, $positionX, $positionY, $texture, $speed)
     {
         $this->color = $color;
         $this->number = $number;
@@ -38,6 +39,7 @@ abstract class AbstractBall
         $this->positionX = $positionX;
         $this->positionY = $positionY;
         $this->texture = $texture;
+        $this->speed = $speed;
     }
 
 

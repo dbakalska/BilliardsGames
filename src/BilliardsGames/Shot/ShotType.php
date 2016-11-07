@@ -9,7 +9,8 @@
 
 namespace BilliardsGames\Shot;
 
-class Shot
+// the different ways to hit the white ball
+class ShotType
 {
     protected $horizontalX;
     protected $verticalY;
