@@ -23,6 +23,7 @@ class Game
     protected $ballOn;
     protected $ballPotted;
     protected $foul;
+    protected $ballCollection;
 
 
     public function init()

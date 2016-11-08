@@ -11,24 +11,30 @@ namespace BilliardsGames\Player;
 
 class Player
 {
-    protected $player;
+    protected $name;
 
     /**
      * Player constructor.
      * @param $name
      */
-    public function __construct($player)
+    public function __construct($name)
     {
-        $this->player = $player;
+        $this->name = $name;
     }
 
-    public function getPlayer()
+    /**
+     * @return mixed
+     */
+    public function getName()
     {
-        return $this->player;
+        return $this->name;
     }
 
-    public function setPlayer($player)
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
     {
-        $this->player = $player;
+        $this->name = $name;
     }
 }
