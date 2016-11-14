@@ -14,6 +14,8 @@ use BilliardsGames\Player\Player;
 
 class Game
 {
+    use \LegalShotTrait;
+
     protected $init;
     protected $rack;
     protected $players = [];
@@ -22,7 +24,6 @@ class Game
     protected $breakShot;
     protected $ballOn;
     protected $ballPotted;
-    protected $foul;
     protected $ballCollection;
 
 
@@ -46,6 +47,7 @@ class Game
             throw new \Exception('Game not initialized.');
         }
 
+        // composition
         $gameLoop = new GameLoopIterator;
         while ($gameLoop->valid()) {
             $turnNumber = $gameLoop->key();
@@ -67,24 +69,17 @@ class Game
         }
     }
 
-    public function isFoul()
-    {
-        if ($this->ballPotted != $this->ballOn ||
-            AbstractBallColor::CUEBALL == $this->ballPotted
-        ) {
-            $this->foul = true;
-        }
-    }
+
 
     public function playersTurn()
     {
-        if ($this->ballOn !== $this->ballPotted) {
+        if ($this->ballOn != $this->ballPotted) {
 
         }
 
     }
 
-    public function nextShot(BallCollection $ballOn)
+   /* public function nextShot(BallCollection $ballOn)
     {
         if ($this->ballOn == $this->ballPotted) {
             $this->nextShot($ballOn);
@@ -95,12 +90,13 @@ class Game
             return $this->breakShot();
         }
         // return
-    }
+    }*/
 
     public function win(Player $player)
     {
 
     }
+
 
 
 }

@@ -12,24 +12,27 @@ namespace BilliardsGames\Game;
 class GamePlay
 {
     protected $player;
+    protected $points;
     protected $gameResults = [];
 
-    /**
-     * @return mixed
-     */
+    public function __construct($player, int $points, array $gameResults)
+    {
+        $this->gameResults[$this->player] = $player;
+        $this->gameResults[$this->points] = $points;
+    }
+
     public function getPlayer()
     {
         return $this->player;
     }
 
-    /**
-     * @param mixed $player
-     */
     public function setPlayer($player)
     {
         $this->player = $player;
     }
 
-
-
+    public function getGameResults()
+    {
+        return $this->gameResults;
+    }
 }

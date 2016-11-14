@@ -41,6 +41,4 @@ abstract class AbstractBall
         $this->texture = $texture;
         $this->speed = $speed;
     }
-
-
 }

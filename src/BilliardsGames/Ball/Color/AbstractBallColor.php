@@ -9,7 +9,7 @@
 
 namespace BilliardsGames\Ball\Color;
 
-class AbstractBallColor
+abstract class AbstractBallColor
 {
     const CUEBALL = 'white';
     protected $red;
@@ -27,4 +27,6 @@ class AbstractBallColor
     protected $brownStriped;
     protected $blueStriped;
     protected $pinkStriped;
+
+
 }
