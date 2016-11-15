@@ -10,9 +10,9 @@ namespace BilliardsGames\Game;
 
 interface GameInitInterface
 {
-    public function init();
-
     public function addPlayer();
+
+    public function init();
 
     public function start();
 }

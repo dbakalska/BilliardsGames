@@ -8,13 +8,13 @@
 
 namespace BilliardsGames\Game;
 
-
 use BilliardsGames\Ball\Color\AbstractBallColor;
 use BilliardsGames\Player\Player;
+use BilliardsGames\Shot\LegalShotTrait;
 
 class Game
 {
-    use \LegalShotTrait;
+    use LegalShotTrait;
 
     protected $init;
     protected $rack;
@@ -22,10 +22,7 @@ class Game
     protected $game;
     protected $balls = [];
     protected $breakShot;
-    protected $ballOn;
-    protected $ballPotted;
     protected $ballCollection;
-
 
     public function init()
     {

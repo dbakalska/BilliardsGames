@@ -9,6 +9,8 @@
 namespace BilliardsGames\Game;
 
 
+use BilliardsGames\Player\Player;
+
 class GamePlay
 {
     protected $player;

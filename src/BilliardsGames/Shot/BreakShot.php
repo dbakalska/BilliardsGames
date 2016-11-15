@@ -8,11 +8,9 @@
 
 namespace BilliardsGames\Shot;
 
-use BilliardsGames\Ball\Color\AbstractBallColor;
-
 class BreakShot
 {
-    use \LegalShotTrait;
+    use LegalShotTrait;
 
     protected $ballCollection = [];
     protected $breakShot = false;
@@ -20,8 +18,11 @@ class BreakShot
     public function isRack($ballCollection)
     {
         if ($ballCollection && $this->cueBall) {
-            if ($this->isLegalShot())
-            $this->breakShot = true;
+            if ($this->isLegalShot()) {
+                $this->breakShot = true;
+            }
+            return true;
         }
+        return false;
     }
 }

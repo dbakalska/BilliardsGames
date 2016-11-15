@@ -16,6 +16,7 @@ echo $player2->getName();
 echo "\n";
 
 $game = new BilliardsGames\Game\Game();
-$game->addPlayer($player1);
-$game->addPlayer($player2);
-$game->init();
+$game->addPlayer($player1)
+    ->addPlayer($player2)
+    ->init();
+

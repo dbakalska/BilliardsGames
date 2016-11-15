@@ -28,5 +28,4 @@ abstract class AbstractBallColor
     protected $blueStriped;
     protected $pinkStriped;
 
-
 }

@@ -6,25 +6,40 @@
  * Time: 12:26 PM
  */
 
+namespace BilliardsGames\Shot;
+
+use BilliardsGames\Ball\Color\AbstractBallColor as Color;
+
 trait LegalShotTrait
 {
     protected $ballOn;
     protected $ballPotted;
-    protected $foul = false;
+    protected $foul = true;
     protected $forcedOffTheTable;
     protected $haveContactWithBallOn;
-    protected $cueBall = \BilliardsGames\Ball\Color\AbstractBallColor::CUEBALL;
+    protected $cueBall = Color::CUEBALL;
 
     public function isLegalShot()
     {
-        if (!$this->cueBall == $this->haveContactWithBallOn ||
-            ($this->cueBall || $this->ballOn) == $this->forcedOffTheTable ||
-            $this->cueBall == $this->ballPotted ||
-            $this->ballPotted != $this->ballOn
-        ) {
-            $this->foul = true;
+        $this->foul = true;
+
+        if ($this->cueBall !== $this->haveContactWithBallOn) {
             return false;
         }
-        return;
+
+        if (($this->cueBall || $this->ballOn) == $this->forcedOffTheTable) {
+            return false;
+        }
+        if ($this->cueBall == $this->ballPotted) {
+            return false;
+        }
+
+        if ($this->ballPotted != $this->ballOn) {
+            return false;
+        }
+
+        $this->foul = false;
+
+        return true;
     }
 }
