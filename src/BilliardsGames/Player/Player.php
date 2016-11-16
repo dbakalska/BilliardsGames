@@ -9,7 +9,7 @@
 
 namespace BilliardsGames\Player;
 
-class Player
+class Player implements PlayerInterface
 {
     protected $name;
 
@@ -37,4 +37,10 @@ class Player
     {
         $this->name = $name;
     }
+
+    public function addPlayer()
+    {
+        // TODO: Implement addPlayer() method.
+    }
+
 }

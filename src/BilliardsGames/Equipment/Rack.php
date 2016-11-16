@@ -7,11 +7,10 @@
  * Time: 5:10 PM
  */
 
-namespace scr\Equipment;
+namespace BilliardsGames\Equipment;
 
 class Rack
 {
     protected $material;
     protected $shape;    // triangle || rhombus
-
 }

@@ -8,6 +8,8 @@
 
 namespace BilliardsGames\Shot;
 
+use BilliardsGames\Ball\BallCollectionInterface;
+
 class BreakShot
 {
     use LegalShotTrait;
@@ -15,7 +17,7 @@ class BreakShot
     protected $ballCollection = [];
     protected $breakShot = false;
 
-    public function isRack($ballCollection)
+    public function isRack(BallCollectionInterface $ballCollection)
     {
         if ($ballCollection && $this->cueBall) {
             if ($this->isLegalShot()) {

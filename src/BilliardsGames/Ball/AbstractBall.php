@@ -9,7 +9,7 @@
 
 namespace BilliardsGames\Ball;
 
-abstract class AbstractBall
+abstract class AbstractBall implements BallCollectionInterface
 {
     protected $color;
     protected $number;

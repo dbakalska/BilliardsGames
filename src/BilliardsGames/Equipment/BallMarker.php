@@ -7,7 +7,7 @@
  * Time: 5:16 PM
  */
 
-namespace scr\Equipment;
+namespace BilliardsGames\Equipment;
 
 class BallMarker
 {

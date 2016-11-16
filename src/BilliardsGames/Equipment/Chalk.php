@@ -7,7 +7,7 @@
  * Time: 11:28 AM
  */
 
-namespace scr\Equipment;
+namespace BilliardsGames\Equipment;
 
 class Chalk
 {

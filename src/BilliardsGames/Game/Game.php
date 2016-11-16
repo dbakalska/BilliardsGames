@@ -10,9 +10,12 @@ namespace BilliardsGames\Game;
 
 use BilliardsGames\Ball\Color\AbstractBallColor;
 use BilliardsGames\Player\Player;
+use BilliardsGames\Player\PlayerInterface;
 use BilliardsGames\Shot\LegalShotTrait;
 
-class Game
+class Game implements
+    \GameInitInterface,
+    \GameFlowInterface
 {
     use LegalShotTrait;
 
@@ -33,7 +36,7 @@ class Game
         $this->init = true;
     }
 
-    public function addPlayer(Player $player)
+    public function addPlayer(PlayerInterface $player)
     {
         $this->players[] = $player;
     }
@@ -65,29 +68,27 @@ class Game
             }
         }
     }
+//
+//    public function playersTurn()
+//    {
+//        if ($this->ballOn != $this->ballPotted) {
+//
+//        }
+//
+//    }
 
-
-
-    public function playersTurn()
-    {
-        if ($this->ballOn != $this->ballPotted) {
-
-        }
-
-    }
-
-   /* public function nextShot(BallCollection $ballOn)
+    public function nextShot(BallCollectionInterface $ballOn)
     {
         if ($this->ballOn == $this->ballPotted) {
             $this->nextShot($ballOn);
         }
-        $turn->getPlayer();
-        $turn->ballOn();
-        if ($turnNumber == 0) {
-            return $this->breakShot();
-        }
-        // return
-    }*/
+//        $turn->getPlayer();
+//        $turn->ballOn();
+//        if ($turnNumber == 0) {
+//            return $this->breakShot();
+//        }
+//        // return
+    }
 
     public function win(Player $player)
     {

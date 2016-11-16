@@ -7,7 +7,7 @@
  * Time: 11:39 AM
  */
 
-namespace scr\Equipment;
+namespace BilliardsGames\Equipment;
 
 class AncillaryApprovedByWpbsa
 {

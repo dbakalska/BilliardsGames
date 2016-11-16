@@ -11,5 +11,11 @@ namespace BilliardsGames\Table;
 
 class PoolTable extends BilliardsTable
 {
+    const POOL_WIDTH = 4.5;
+    const POOL_LENGTH = 9;
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
 }

@@ -7,7 +7,7 @@
  * Time: 11:27 AM
  */
 
-namespace scr\Equipment;
+namespace BilliardsGames\Equipment;
 
 class Cue
 {

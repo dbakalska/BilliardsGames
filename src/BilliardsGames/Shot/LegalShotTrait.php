@@ -14,7 +14,7 @@ trait LegalShotTrait
 {
     protected $ballOn;
     protected $ballPotted;
-    protected $foul = true;
+    protected $foul = false;
     protected $forcedOffTheTable;
     protected $haveContactWithBallOn;
     protected $cueBall = Color::CUEBALL;
