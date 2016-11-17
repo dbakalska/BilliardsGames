@@ -16,6 +16,8 @@ class SnookerTable extends BilliardsTable
 
     public function __construct()
     {
-        parent::__construct();
+        $this->width = self::SNOOKER_WIDTH;
+        $this->length = self::SNOOKER_LENGTH;
+        parent::__construct($this->width, $this->length);
     }
 }

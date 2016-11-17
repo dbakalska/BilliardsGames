@@ -12,13 +12,14 @@ namespace BilliardsGames\Table;
 abstract class BilliardsTable
 {
     const POCKETS = 6;
+    protected $pockets;
     protected $width;
     protected $length;
 
-    public function __construct($pockets, $width, $length)
+    public function __construct($width, $length)
     {
-        $this->$pockets = self::POCKETS;
-        $this->$width = $width;
-        $this->$length = $length;
+        $this->pockets = self::POCKETS;
+        $this->width = $width;
+        $this->length = $length;
     }
 }

@@ -7,3 +7,6 @@
  */
 
 require 'vendor/autoload.php';
+
+$table = new \BilliardsGames\Table\SnookerTable();
+print_r($table);
