@@ -16,8 +16,6 @@ class PoolTable extends BilliardsTable
 
     public function __construct()
     {
-        $this->width = self::POOL_WIDTH;
-        $this->length = self::POOL_LENGTH;
-        parent::__construct($this->width, $this->length);
+        parent::__construct(static::POOL_WIDTH, static::POOL_LENGTH);
     }
 }
