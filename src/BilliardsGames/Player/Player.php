@@ -37,10 +37,4 @@ class Player implements PlayerInterface
     {
         $this->name = $name;
     }
-
-    public function addPlayer()
-    {
-        // TODO: Implement addPlayer() method.
-    }
-
 }

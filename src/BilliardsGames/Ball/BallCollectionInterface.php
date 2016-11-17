@@ -10,8 +10,11 @@ namespace BilliardsGames\Ball;
 
 interface BallCollectionInterface
 {
+
     public function ballOn();
 
     public function ballCollection();
+
+    public function removeBallFromCollection();
 
 }

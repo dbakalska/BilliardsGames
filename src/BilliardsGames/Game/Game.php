@@ -14,7 +14,7 @@ use BilliardsGames\Player\PlayerInterface;
 use BilliardsGames\Shot\LegalShotTrait;
 
 class Game implements
-    \GameInitInterface,
+    GameInitInterface,
     \GameFlowInterface
 {
     use LegalShotTrait;
@@ -77,18 +77,18 @@ class Game implements
 //
 //    }
 
-    public function nextShot(BallCollectionInterface $ballOn)
+ /*   public function nextShot(BallCollectionInterface $ballOn)
     {
         if ($this->ballOn == $this->ballPotted) {
             $this->nextShot($ballOn);
         }
-//        $turn->getPlayer();
-//        $turn->ballOn();
-//        if ($turnNumber == 0) {
-//            return $this->breakShot();
-//        }
-//        // return
-    }
+        $turn->getPlayer();
+        $turn->ballOn();
+        if ($turnNumber == 0) {
+            return $this->breakShot();
+        }
+        return;
+    }*/
 
     public function win(Player $player)
     {
