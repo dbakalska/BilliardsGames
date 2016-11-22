@@ -25,16 +25,17 @@ class Snooker extends Game implements BallCollectionInterface
 
     public function getBalls()
     {
-        $balls = [];
+        $balls = [
+            new Color\Yellow,
+            new Color\Green,
+            new Color\Brown,
+            new Color\Blue,
+            new Color\Pink,
+            new Color\Black,
+        ];
         for ($i = 0; $i < 15; $i++) {
             $balls[] = new Color\Red;
         }
-        $balls[] = new Color\Yellow();
-        $balls[] = new Color\Green();
-        $balls[] = new Color\Brown();
-        $balls[] = new Color\Blue();
-        $balls[] = new Color\Pink();
-        $balls[] = new Color\Black();
         return $balls;
     }
 }

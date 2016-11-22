@@ -8,7 +8,6 @@
 
 namespace BilliardsGames\Shot;
 
-use BilliardsGames\Ball\Color\AbstractBallColor;
 use BilliardsGames\Ball\BallCollectionInterface;
 
 trait NextShotTrait

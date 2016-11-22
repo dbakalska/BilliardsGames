@@ -25,16 +25,16 @@ class PoolNineBall extends Game implements BallCollectionInterface
 
     public function getBalls()
     {
-        $balls = [];
-        $balls[] = new Color\Yellow();
-        $balls[] = new Color\Blue();
-        $balls[] = new Color\Red();
-        $balls[] = new Color\Pink();
-        $balls[] = new Color\Orange();
-        $balls[] = new Color\Green();
-        $balls[] = new Color\Brown();
-        $balls[] = new Color\Black();
-        $balls[] = new Color\YellowStriped();
-        return $balls;
+        return [
+            new Color\Yellow,
+            new Color\Blue,
+            new Color\Red,
+            new Color\Pink,
+            new Color\Orange,
+            new Color\Green,
+            new Color\Brown,
+            new Color\Black,
+            new Color\YellowStriped,
+        ];
     }
 }
