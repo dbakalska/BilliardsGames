@@ -27,15 +27,17 @@ trait NextShotTrait
         }
     }
 
-    public function removeBallFromCollection()
+    public function removeBallFromCollection($ballPotted, BallCollectionInterface $ballCollection)
     {
-
+        if ($this->ballOn == $this->ballPotted) {
+            unset($ballCollection[$ballPotted]);
+        }
     }
 
     public function nextShot()
     {
         if ($this->isBallPotted()) {
-
+            $this->getBallOn();
         }
     }
 
@@ -48,5 +50,4 @@ trait NextShotTrait
     {
         return $this->ballOn;
     }
-
 }

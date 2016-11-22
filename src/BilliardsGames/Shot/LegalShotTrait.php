@@ -8,38 +8,62 @@
 
 namespace BilliardsGames\Shot;
 
-use BilliardsGames\Ball\Color\AbstractBallColor as Color;
+use BilliardsGames\Ball\AbstractBall;
 
 trait LegalShotTrait
 {
+    protected $cueBall;
     protected $ballOn;
-    protected $ballPotted;
     protected $foul = false;
-    protected $forcedOffTheTable;
-    protected $haveContactWithBallOn;
-    protected $cueBall = Color::CUEBALL;
+    protected $inPocket = false;
 
     public function isLegalShot()
     {
         $this->foul = true;
 
-        if ($this->cueBall !== $this->haveContactWithBallOn) {
+        if (!haveContactWithBallOn($this->ballOn)) {
             return false;
         }
 
-        if (($this->cueBall || $this->ballOn) == $this->forcedOffTheTable) {
-            return false;
-        }
-        if ($this->cueBall == $this->ballPotted) {
+        if (isBallPotted($this->cueBall)) {
             return false;
         }
 
-        if ($this->ballPotted != $this->ballOn) {
+        if (isBallPotted(!$this->ballOn)) {
             return false;
         }
 
         $this->foul = false;
 
         return true;
+    }
+
+    public function haveContactWithBallOn(BallOn $ballOn)
+    {
+        return $ballOn->isHit();
+    }
+
+    public function forcedOffTheTable($ball)
+    {
+        if ($ball->isInPocket) {
+            return true;
+        }
+    }
+
+    public function isBallPotted($ball)
+    {
+        if ($ball->isInPocket()) {
+            return true;
+        }
+    }
+
+    public function isInPocket(): bool
+    {
+        return $this->inPocket;
+    }
+
+    public function setInPocket(bool $inPocket)
+    {
+        $this->inPocket = $inPocket;
     }
 }

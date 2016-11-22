@@ -9,23 +9,14 @@
 
 namespace BilliardsGames\Ball\Color;
 
-abstract class AbstractBallColor
-{
-    const CUEBALL = 'white';
-    protected $red;
-    protected $yellow;
-    protected $green;
-    protected $brown;
-    protected $blue;
-    protected $pink;
-    protected $black;
-    protected $orange;
-    protected $orangeStriped;
-    protected $redStriped;
-    protected $yellowStriped;
-    protected $greenStriped;
-    protected $brownStriped;
-    protected $blueStriped;
-    protected $pinkStriped;
+use BilliardsGames\Ball\PoolBallInterface;
 
+abstract class AbstractBallColor implements ColorInterface, PoolBallInterface
+{
+    const COLOR = 'not-set';
+
+    public function getColor()
+    {
+        return static::COLOR;
+    }
 }

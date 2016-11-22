@@ -9,7 +9,7 @@
 
 namespace BilliardsGames\Ball;
 
-class PoolBall extends AbstractBall implements BallCollectionInterface
+interface SnookerBallInterface
 {
 
 }

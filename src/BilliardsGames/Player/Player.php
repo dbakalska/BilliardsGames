@@ -11,7 +11,7 @@ namespace BilliardsGames\Player;
 
 class Player implements PlayerInterface
 {
-    protected $name;
+    public $name;
 
     /**
      * Player constructor.

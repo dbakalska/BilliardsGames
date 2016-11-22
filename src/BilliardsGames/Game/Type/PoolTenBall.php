@@ -9,9 +9,33 @@
 
 namespace BilliardsGames\Game\Type;
 
+use BilliardsGames\Ball\BallCollectionInterface;
 use BilliardsGames\Game\Game;
+use BilliardsGames\Ball\Color;
+use BilliardsGames\Table\PoolTable;
 
-class PoolTenBall extends Game
+class PoolTenBall extends Game implements BallCollectionInterface
 {
+    protected $table;
 
+    public function __construct()
+    {
+        $this->table = new PoolTable();
+    }
+
+    public function getBalls()
+    {
+        $balls = [];
+        $balls[] = new Color\Yellow();
+        $balls[] = new Color\Blue();
+        $balls[] = new Color\Red();
+        $balls[] = new Color\Pink();
+        $balls[] = new Color\Orange();
+        $balls[] = new Color\Green();
+        $balls[] = new Color\Brown();
+        $balls[] = new Color\Black();
+        $balls[] = new Color\YellowStriped();
+        $balls[] = new Color\BlueStriped();
+        return $balls;
+    }
 }

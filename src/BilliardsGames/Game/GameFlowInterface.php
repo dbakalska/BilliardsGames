@@ -10,8 +10,6 @@ namespace BilliardsGames\Game;
 
 interface GameFlowInterface
 {
-    public function nextShot();
-
     public function playersTurn();
 
     public function win();
