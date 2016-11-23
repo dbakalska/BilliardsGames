@@ -8,17 +8,14 @@
 
 namespace BilliardsGames\Game;
 
-use BilliardsGames\Ball\BallCollectionInterface;
 use BilliardsGames\Player\PlayerInterface;
 use BilliardsGames\Shot\LegalShotTrait;
-use BilliardsGames\Shot\NextShotTrait;
-use BilliardsGames\Ball\Color\White;
 
 class Game implements
     GameInitInterface,
     GameFlowInterface
 {
-    use LegalShotTrait, NextShotTrait;
+    use LegalShotTrait;
 
     protected $init;
     protected $players = [];
@@ -87,7 +84,6 @@ class Game implements
                 $this->changePlayersTurn();
             }
 
-
             if (empty($this->ballCollection)) {
                 return new Win();
             }
@@ -116,11 +112,6 @@ class Game implements
         return $this;
     }
 
-    private function getPlayerIndex(PlayerInterface $player)
-    {
-        return array_search($player, $this->players, true);
-    }
-
     public function getScore(PlayerInterface $player = null)
     {
         $playerIndex = $this->getPlayerIndex($player);
@@ -136,8 +127,9 @@ class Game implements
         return $scores;
     }
 
-    public function win()
+    private function getPlayerIndex(PlayerInterface $player)
     {
-
+        return array_search($player, $this->players, true);
     }
+
 }

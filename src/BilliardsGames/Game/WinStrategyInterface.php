@@ -8,10 +8,7 @@
 
 namespace BilliardsGames\Game;
 
-interface GameStrategyInterface
+interface WinStrategyInterface
 {
-
-    public function gameStrategy($remainingBalls);
-
-
+    public function win();
 }

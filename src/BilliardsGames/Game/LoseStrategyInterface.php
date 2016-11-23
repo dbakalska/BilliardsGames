@@ -8,11 +8,7 @@
 
 namespace BilliardsGames\Game;
 
-interface GameFlowInterface
+interface LoseStrategyInterface
 {
-    public function breakShot();
-
-    public function start();
-
-    public function changePlayersTurn();
+    public function lose();
 }

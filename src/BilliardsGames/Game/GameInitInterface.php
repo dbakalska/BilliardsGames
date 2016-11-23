@@ -8,9 +8,13 @@
 
 namespace BilliardsGames\Game;
 
+use BilliardsGames\Player\PlayerInterface;
+
 interface GameInitInterface
 {
-    public function init();
+    public function addPlayer(PlayerInterface $player);
 
-    public function start();
+    public function rack();
+
+    public function init();
 }
