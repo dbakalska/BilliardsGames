@@ -8,8 +8,6 @@
 
 namespace BilliardsGames\Shot;
 
-use BilliardsGames\Ball\AbstractBall;
-
 trait LegalShotTrait
 {
     protected $cueBall;
@@ -53,8 +51,9 @@ trait LegalShotTrait
     public function isBallPotted($ball)
     {
         if ($ball->isInPocket()) {
-            return true;
+            $this->removeBallFromCollection($ball);
         }
+        return true;
     }
 
     public function isInPocket(): bool

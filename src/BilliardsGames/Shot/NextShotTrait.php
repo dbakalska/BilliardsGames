@@ -14,29 +14,13 @@ trait NextShotTrait
 {
     use LegalShotTrait;
 
+    protected $ballPotted;
     protected $ballCollection = [];
 
-    public function isBallPotted()
+    public function removeBallFromCollection($ball)
     {
-        if ($this->isLegalShot()) {
-            if ($this->ballOn == $this->ballPotted) {
-                $this->ballOn == $this->removeBallFromCollection();
-            }
-            return true;
-        }
-    }
-
-    public function removeBallFromCollection($ballPotted, BallCollectionInterface $ballCollection)
-    {
-        if ($this->ballOn == $this->ballPotted) {
-            unset($ballCollection[$ballPotted]);
-        }
-    }
-
-    public function nextShot()
-    {
-        if ($this->isBallPotted()) {
-            $this->getBallOn();
+        if ($this->isBallPotted($ball)) {
+            unset($this->ballCollection[$this->ballPotted]);
         }
     }
 

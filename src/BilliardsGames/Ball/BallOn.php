@@ -8,13 +8,8 @@
 
 namespace BilliardsGames\Ball;
 
-use BilliardsGames\Ball\Color\AbstractBallColor;
-use BilliardsGames\Shot\LegalShotTrait;
-
 class BallOn
 {
-    use BallTrait;
-
     protected $hit = false;
 
     public function isHit(): bool
@@ -27,5 +22,4 @@ class BallOn
         $this->hit = $hit;
         return $this;
     }
-
 }

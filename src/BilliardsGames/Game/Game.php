@@ -8,20 +8,19 @@
 
 namespace BilliardsGames\Game;
 
-use BilliardsGames\Ball\Color\AbstractBallColor;
-use BilliardsGames\Player\Player;
+use BilliardsGames\Ball\BallCollectionInterface;
 use BilliardsGames\Player\PlayerInterface;
 use BilliardsGames\Shot\LegalShotTrait;
 use BilliardsGames\Shot\NextShotTrait;
+use BilliardsGames\Ball\Color\White;
 
 class Game implements
     GameInitInterface,
     GameFlowInterface
 {
-    use LegalShotTrait;
+    use LegalShotTrait, NextShotTrait;
 
     protected $init;
-
     protected $players = [];
     protected $game;
     protected $balls = [];
@@ -37,7 +36,6 @@ class Game implements
         if (count($this->players) < 2) {
             throw new \Exception('Not enough players to start the game.');
         }
-
         $this->rack = true;
         $this->init = true;
     }
@@ -49,12 +47,16 @@ class Game implements
         $this->scores[$playerIndex] = 0;
     }
 
+    public function rack()
+    {
+        if ($this->cueBall && $this->ballCollection) {
+            return $this;
+        }
+    }
+
     public function breakShot()
     {
-        if ($this->ballCollection && $this->cueBall) {
-            if ($this->isLegalShot()) {
-                $this->breakShot = true;
-            }
+        if ($this->rack() && $this->isLegalShot()) {
             return true;
         }
         return false;
@@ -67,7 +69,7 @@ class Game implements
         }
 
         // composition
-/*        $gameLoop = new GameLoopIterator;
+        $gameLoop = new GameLoopIterator;
         while ($gameLoop->valid()) {
             $turnNumber = $gameLoop->key();
             $turn = $gameLoop->current();
@@ -77,19 +79,17 @@ class Game implements
             $shotResult = $turn->nextShot($ballOn);
             $break = 0;
 
-            if ($this->breakShot->isLegalShot($shotResult)) {
-                $break++;
+            if ($this->breakShot) {
+                $this->getBallOn();
             }
 
-
-            if ($break == 8) {
+            if (empty($this->ballCollection)) {
                 return new Win();
             }
             if ($this->ballOn != $this->ballPotted) {
                 $turnNumber = $gameLoop->next();
             }
-
-        }*/
+        }
     }
 
     public function playersTurn()
@@ -98,21 +98,7 @@ class Game implements
         if ($this->ballOn != $this->ballPotted) {
             next($this->players);
         }
-
     }
-
- /*   public function nextShot(BallCollectionInterface $ballOn)
-    {
-        if ($this->ballOn == $this->ballPotted) {
-            $this->nextShot($ballOn);
-        }
-        $turn->getPlayer();
-        $turn->ballOn();
-        if ($turnNumber == 0) {
-            return $this->breakShot();
-        }
-        return;
-    }*/
 
     public function addScore(PlayerInterface $player, $points)
     {
