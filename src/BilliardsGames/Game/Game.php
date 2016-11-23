@@ -31,15 +31,6 @@ class Game implements
     protected $objectBalls;
 
 
-    public function init()
-    {
-        if (count($this->players) < 2) {
-            throw new \Exception('Not enough players to start the game.');
-        }
-        $this->rack = true;
-        $this->init = true;
-    }
-
     public function addPlayer(PlayerInterface $player)
         {
         $this->players[] = $player;
@@ -52,6 +43,15 @@ class Game implements
         if ($this->cueBall && $this->ballCollection) {
             return $this;
         }
+    }
+
+    public function init()
+    {
+        if (count($this->players) < 2) {
+            throw new \Exception('Not enough players to start the game.');
+        }
+        $this->rack();
+        $this->init = true;
     }
 
     public function breakShot()
@@ -76,27 +76,34 @@ class Game implements
 
             $ballOn = $this->getBallOn();
 
-            $shotResult = $turn->nextShot($ballOn);
-            $break = 0;
+//            $shotResult = $turn->getBallOn($ballOn);
+//            $break = 0;
 
             if ($this->breakShot) {
-                $this->getBallOn();
+                if ($this->isBallPotted($ballOn)) {
+                    $this->getBallOn();
+                }
+                // change player`s turn
+                $this->changePlayersTurn();
             }
+
 
             if (empty($this->ballCollection)) {
                 return new Win();
             }
             if ($this->ballOn != $this->ballPotted) {
-                $turnNumber = $gameLoop->next();
+//                $turnNumber = $gameLoop->next();
+                $this->changePlayersTurn();
             }
         }
     }
 
-    public function playersTurn()
+    public function changePlayersTurn()
     {
-
-        if ($this->ballOn != $this->ballPotted) {
-            next($this->players);
+        if ($this->isLegalShot()) {
+            if (!$this->isBallPotted($this->ballOn)) {
+                next($this->players);
+            }
         }
     }
 

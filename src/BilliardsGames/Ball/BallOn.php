@@ -12,6 +12,16 @@ class BallOn
 {
     protected $hit = false;
 
+    public function setBallOn($ballOn)
+    {
+        $this->ballOn = $ballOn;
+    }
+
+    public function getBallOn()
+    {
+        return $this->ballOn;
+    }
+
     public function isHit(): bool
     {
         return $this->hit;

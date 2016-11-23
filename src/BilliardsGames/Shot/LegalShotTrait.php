@@ -8,18 +8,22 @@
 
 namespace BilliardsGames\Shot;
 
+use BilliardsGames\Ball\BallOn;
+
 trait LegalShotTrait
 {
     protected $cueBall;
     protected $ballOn;
     protected $foul = false;
     protected $inPocket = false;
+    protected $ballPotted;
+    protected $ballCollection = [];
 
     public function isLegalShot()
     {
         $this->foul = true;
 
-        if (!haveContactWithBallOn($this->ballOn)) {
+        if (!$this->haveContactWithBallOn(new BallOn())) {
             return false;
         }
 

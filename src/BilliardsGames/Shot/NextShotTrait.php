@@ -12,25 +12,5 @@ use BilliardsGames\Ball\BallCollectionInterface;
 
 trait NextShotTrait
 {
-    use LegalShotTrait;
 
-    protected $ballPotted;
-    protected $ballCollection = [];
-
-    public function removeBallFromCollection($ball)
-    {
-        if ($this->isBallPotted($ball)) {
-            unset($this->ballCollection[$this->ballPotted]);
-        }
-    }
-
-    public function setBallOn($ballOn)
-    {
-        $this->ballOn = $ballOn;
-    }
-
-    public function getBallOn()
-    {
-        return $this->ballOn;
-    }
 }
