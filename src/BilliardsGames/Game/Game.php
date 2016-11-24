@@ -9,11 +9,10 @@
 namespace BilliardsGames\Game;
 
 use BilliardsGames\Player\PlayerInterface;
+use BilliardsGames\Player\PlayerIterator;
 use BilliardsGames\Shot\LegalShotTrait;
 
-class Game implements
-    GameInitInterface,
-    GameFlowInterface
+class Game implements GameInitInterface
 {
     use LegalShotTrait;
 
@@ -29,7 +28,7 @@ class Game implements
 
 
     public function addPlayer(PlayerInterface $player)
-        {
+    {
         $this->players[] = $player;
         $playerIndex = $this->getPlayerIndex($player);
         $this->scores[$playerIndex] = 0;
@@ -65,33 +64,22 @@ class Game implements
             throw new \Exception('Game not initialized.');
         }
 
-        // composition
-        $gameLoop = new GameLoopIterator;
-        while ($gameLoop->valid()) {
-            $turnNumber = $gameLoop->key();
+        $playerIterator = new PlayerIterator($this->players);
+        $gameLoop = new GameLoopIterator($playerIterator);
+        print_r('START OF GAME' . PHP_EOL);
+        while ($gameLoop->next()) {
             $turn = $gameLoop->current();
+            print_r(PHP_EOL . PHP_EOL . 'TURN: ' . ($gameLoop->key() + 1) . PHP_EOL);
 
-            $ballOn = $this->getBallOn();
+            // Define random logic to decide if turn is valid
+            $turn->setIsValid(rand(100,1000) % 2 == 0);
 
-//            $shotResult = $turn->getBallOn($ballOn);
-//            $break = 0;
-
-            if ($this->breakShot) {
-                if ($this->isBallPotted($ballOn)) {
-                    $this->getBallOn();
-                }
-                // change player`s turn
-                $this->changePlayersTurn();
-            }
-
-            if (empty($this->ballCollection)) {
-                return new Win();
-            }
-            if ($this->ballOn != $this->ballPotted) {
-//                $turnNumber = $gameLoop->next();
-                $this->changePlayersTurn();
+            $currentPlayer = $turn->getPlayer();
+            if ($turn->getIsValid()) {
+                $this->addScore($currentPlayer, 1);
             }
         }
+        print_r('END OF GAME' . PHP_EOL);
     }
 
     public function changePlayersTurn()
