@@ -7,6 +7,7 @@ use BilliardsGames\Player\PlayerInterface;
 class Turn
 {
     protected $isValid = false;
+    protected $isFinal = false;
     protected $player;
 
     public function __construct(PlayerInterface $player)
@@ -46,5 +47,29 @@ class Turn
     public function getPlayer()
     {
         return $this->player;
+    }
+
+    /**
+     * Gets the value of isFinal.
+     *
+     * @return mixed
+     */
+    public function getIsFinal()
+    {
+        return $this->isFinal;
+    }
+
+    /**
+     * Sets the value of isFinal.
+     *
+     * @param mixed $isFinal the is final
+     *
+     * @return self
+     */
+    public function setIsFinal($isFinal)
+    {
+        $this->isFinal = $isFinal;
+
+        return $this;
     }
 }

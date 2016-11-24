@@ -38,16 +38,16 @@ class GameLoopIterator implements \Iterator
 
     public function next()
     {
-        if ($this->position >= 5) {
-            print_r('END OF TURNS' . PHP_EOL);
-            return false;
-        }
         if (empty($this->turns)) {
             print_r('BREAKSHOT' . PHP_EOL);
             $breakshot = new Breakshot($this->currentPlayer());
             $breakshot->setIsValid(true);
             $this->turns[$this->position] = $breakshot;
             return $breakshot;
+        }
+        if ($this->current()->getIsFinal()) {
+            print_r('END OF TURNS' . PHP_EOL);
+            return false;
         }
         print_r('SHOT' . PHP_EOL);
         $nextPlayer = $this->currentPlayer();
