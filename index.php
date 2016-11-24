@@ -9,10 +9,10 @@
 require 'vendor/autoload.php';
 
 $game = new \BilliardsGames\Game\Game();
-$player1 = new \BilliardsGames\Player\Player('edno');
-$player2 = new \BilliardsGames\Player\Player('dve');
-$game->addPlayer($player1);
-$game->addPlayer($player2);
+$game->addPlayer(new \BilliardsGames\Player\Player('edno'));
+$game->addPlayer(new \BilliardsGames\Player\Player('dve'));
+// $game->addPlayer(new \BilliardsGames\Player\Player('tri'));
+// $game->addPlayer(new \BilliardsGames\Player\Player('chetiri'));
 $game->init();
 $game->start();
 // $game->addScore($player1, 40);

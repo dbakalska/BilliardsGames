@@ -78,6 +78,10 @@ class Game implements GameInitInterface
             if ($turn->getIsValid()) {
                 $this->addScore($currentPlayer, 1);
             }
+
+            if ($gameLoop->key() >= 100) {
+                $turn->setIsFinal(true);
+            }
         }
         print_r('END OF GAME' . PHP_EOL);
     }
