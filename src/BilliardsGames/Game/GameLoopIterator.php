@@ -67,7 +67,7 @@ class GameLoopIterator implements \Iterator
         return $player;
     }
 
-    protected function nextPlayer()
+    public function nextPlayer()
     {
         $this->players->next();
         $player = $this->players->current();

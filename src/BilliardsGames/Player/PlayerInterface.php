@@ -14,4 +14,8 @@ interface PlayerInterface
     public function setName($name);
 
     public function getName();
+
+    public function setRank($rank);
+
+    public function getRank();
 }

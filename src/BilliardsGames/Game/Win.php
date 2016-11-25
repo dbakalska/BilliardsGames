@@ -9,6 +9,7 @@
 namespace BilliardsGames\Game;
 
 use BilliardsGames\Player\PlayerIterator;
+use BilliardsGames\Game\Game;
 
 class Win implements WinStrategyInterface
 {

@@ -12,14 +12,17 @@ namespace BilliardsGames\Player;
 class Player implements PlayerInterface
 {
     public $name;
+    public $rank;
 
     /**
      * Player constructor.
      * @param $name
+     * @param $rank - int range(1,10)
      */
-    public function __construct($name)
+    public function __construct($name, $rank)
     {
         $this->name = $name;
+        $this->rank = $rank;
     }
 
     /**
@@ -37,4 +40,21 @@ class Player implements PlayerInterface
     {
         $this->name = $name;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getRank()
+    {
+        return $this->rank;
+    }
+
+    /**
+     * @param mixed $rank
+     */
+    public function setRank($rank)
+    {
+        $this->rank = $rank;
+    }
+
 }

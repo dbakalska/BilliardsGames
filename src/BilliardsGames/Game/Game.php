@@ -50,6 +50,7 @@ class Game implements GameInitInterface
         }
         $this->rack();
         $this->init = true;
+
     }
 
 /*    public function breakShot()
@@ -82,6 +83,10 @@ class Game implements GameInitInterface
 //            $turn->setIsValid(rand(100,1000) % 2 == 0);
 
             $currentPlayer = $turn->getPlayer();
+            if ($this->getRank() > 5) {
+                print_r('The player is rank ' );
+            }
+
             if ($turn->getIsValid()) {
                 $this->addScore($currentPlayer, 1);
             }
