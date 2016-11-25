@@ -8,15 +8,13 @@
 
 require 'vendor/autoload.php';
 
-$game = new \BilliardsGames\Game\Game();
+$game = new \BilliardsGames\Game\Type\PoolEightBall();
 $game->addPlayer(new \BilliardsGames\Player\Player('edno'));
-$game->addPlayer(new \BilliardsGames\Player\Player('dve'));
+$p = $game->addPlayer(new \BilliardsGames\Player\Player('dve'));
 // $game->addPlayer(new \BilliardsGames\Player\Player('tri'));
 // $game->addPlayer(new \BilliardsGames\Player\Player('chetiri'));
 $game->init();
-$game->start();
-// $game->addScore($player1, 40);
-// $game->addScore($player2, 2);
+$game->startGame();
 print_r($game->getScores());
 
 

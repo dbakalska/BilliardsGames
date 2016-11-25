@@ -11,8 +11,12 @@ namespace BilliardsGames\Game\Type;
 
 use BilliardsGames\Ball\BallCollectionInterface;
 use BilliardsGames\Game\Game;
+use BilliardsGames\Game\Turn\Turn;
+use BilliardsGames\Player\PlayerIterator;
+use BilliardsGames\Game\GameLoopIterator;
 use BilliardsGames\Table\PoolTable;
 use BilliardsGames\Ball\Color;
+use BilliardsGames\Game\Win;
 
 class PoolEightBall extends Game implements BallCollectionInterface
 {
@@ -43,4 +47,45 @@ class PoolEightBall extends Game implements BallCollectionInterface
             new Color\BrownStriped,
         ];
     }
+
+    public function startGame()
+    {
+        $playerIterator = new PlayerIterator($this->players);
+        $gameLoop = new GameLoopIterator($playerIterator);
+        while ($gameLoop->next()) {
+//            $turn = $gameLoop->current();
+//            print_r(PHP_EOL . PHP_EOL . 'TURN: ' . ($gameLoop->key() + 1) . PHP_EOL);
+
+            // Define random logic to decide if turn is valid
+
+//            $turn->setIsValid(rand(100,1000) % 2 == 0);
+
+//            if ($this->isBallPotted($this->getBalls())) {
+//                $this->getBalls();
+//            }
+
+//            $currentPlayer = $turn->getPlayer();
+//            if ($turn->getIsValid()) {
+//                $this->addScore($currentPlayer, 1);
+//            }
+//
+//            if ($gameLoop->key() >= 10) {
+//                $turn->setIsFinal(true);
+//            }
+//            if ($this->getScores() >= 8) {
+//                $turn->setIsFinal(true);
+//            }
+
+//            if ($this->getBalls() == Color\Black::COLOR) {
+//                $turn->setIsFinal(true);
+//                var_dump('You win!');
+//            }
+
+            $win = new Win();
+            return $win->win();
+        }
+    }
+
+
+
 }

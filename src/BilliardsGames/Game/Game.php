@@ -11,6 +11,7 @@ namespace BilliardsGames\Game;
 use BilliardsGames\Player\PlayerInterface;
 use BilliardsGames\Player\PlayerIterator;
 use BilliardsGames\Shot\LegalShotTrait;
+use BilliardsGames\Ball\Color\White;
 
 class Game implements GameInitInterface
 {
@@ -36,7 +37,8 @@ class Game implements GameInitInterface
 
     public function rack()
     {
-        if ($this->cueBall && $this->ballCollection) {
+        $cueBall = new White();
+        if ($cueBall && $this->ballCollection) {
             return $this;
         }
     }
@@ -50,20 +52,25 @@ class Game implements GameInitInterface
         $this->init = true;
     }
 
-    public function breakShot()
+/*    public function breakShot()
     {
         if ($this->rack() && $this->isLegalShot()) {
             return true;
         }
         return false;
-    }
+    }*/
 
     public function start()
     {
         if (!$this->init) {
             throw new \Exception('Game not initialized.');
         }
+        $this->startGame();
+        print_r('END OF GAME' . PHP_EOL);
+    }
 
+    public function startGame()
+    {
         $playerIterator = new PlayerIterator($this->players);
         $gameLoop = new GameLoopIterator($playerIterator);
         print_r('START OF GAME' . PHP_EOL);
@@ -72,27 +79,25 @@ class Game implements GameInitInterface
             print_r(PHP_EOL . PHP_EOL . 'TURN: ' . ($gameLoop->key() + 1) . PHP_EOL);
 
             // Define random logic to decide if turn is valid
-            $turn->setIsValid(rand(100,1000) % 2 == 0);
+//            $turn->setIsValid(rand(100,1000) % 2 == 0);
 
             $currentPlayer = $turn->getPlayer();
             if ($turn->getIsValid()) {
                 $this->addScore($currentPlayer, 1);
             }
 
-            if ($gameLoop->key() >= 100) {
+            if ($gameLoop->key() >= 10) {
                 $turn->setIsFinal(true);
             }
         }
-        print_r('END OF GAME' . PHP_EOL);
     }
 
     public function changePlayersTurn()
     {
         if ($this->isLegalShot()) {
-            if (!$this->isBallPotted($this->ballOn)) {
+            if (!$this->isBallPotted($this->ballOn)) {}
                 next($this->players);
             }
-        }
     }
 
     public function addScore(PlayerInterface $player, $points)
@@ -123,5 +128,4 @@ class Game implements GameInitInterface
     {
         return array_search($player, $this->players, true);
     }
-
 }
