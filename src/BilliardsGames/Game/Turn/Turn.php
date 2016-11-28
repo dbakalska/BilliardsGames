@@ -10,7 +10,7 @@ class Turn
     protected $isFinal = false;
     protected $player;
 
-    public function __construct(PlayerInterface $player)
+    public function __construct($player)
     {
         $this->player = $player;
     }

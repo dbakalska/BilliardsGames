@@ -7,18 +7,36 @@
  */
 
 require 'vendor/autoload.php';
+require 'config/DBconnection.php';
 
 $game = new \BilliardsGames\Game\Type\PoolEightBall();
-$game->addPlayer(new \BilliardsGames\Player\Player('edno', 6));
-$game->addPlayer(new \BilliardsGames\Player\Player('dve', 9));
-// $game->addPlayer(new \BilliardsGames\Player\Player('tri'));
-// $game->addPlayer(new \BilliardsGames\Player\Player('chetiri'));
+$player1 = new \BilliardsGames\Player\Player('Peter', 6);
+$player2 = new \BilliardsGames\Player\Player('George', 9);
+$game->addPlayer($player1);
+$game->addPlayer($player2);
+$player1details = [$player1->getName(), $player1->getRank()];
+$player2details = [$player2->getName(), $player2->getRank()];
+$players = [$player1->getName(),$player2->getName()];
+$firstPlayer = $players[array_rand($players)];
+$breakshot = new \BilliardsGames\Game\Turn\Breakshot($firstPlayer);
+$breakshot->setIsValid(true);
+
+
+//$query = "INSERT INTO Players (Name, Rank) VALUES ($player1->getName(), $player1->getRank())";
+//$query = "SELECT * FROM players WHERE Id = 1";
+//print_r($result = $connection->query($query));
+
+$query = "INSERT INTO Players (Name, Rank) VALUES (?, ?)";
+$result = $connection->prepare($query);
+$result->execute(array('Peter', 6));
+
+
 $game->init();
 //$game->start();
-$game->startGame();
+//$game->startGame();
 
 
-print_r($game->getScores());
+//print_r($game->getScores());
 
 
 /*

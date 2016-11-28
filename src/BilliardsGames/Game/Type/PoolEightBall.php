@@ -55,6 +55,8 @@ class PoolEightBall extends \BilliardsGames\Game\Game implements BallCollectionI
         $gameLoop = new GameLoopIterator($playerIterator);
         while ($gameLoop->next()) {
             $turn = $gameLoop->current();
+
+
             print_r(PHP_EOL . PHP_EOL . 'TURN: ' . ($gameLoop->key() + 1) . PHP_EOL);
 
             // Define random logic to decide if turn is valid
@@ -69,11 +71,12 @@ class PoolEightBall extends \BilliardsGames\Game\Game implements BallCollectionI
             if ($currentPlayer->getRank() > 5) {
                 $highestRank = max($currentPlayer->getRank(), $gameLoop->nextPlayer()->getRank());
                 if ($currentPlayer->getRank() == $highestRank) {
-                    print_r($winner = $currentPlayer->getName());
+                    print_r($currentPlayer->getName());
                 }
-                $turn->setIsValid(true);
-                $this->addScore($winner, 1);
-                
+//                $winner =
+//                    $turn->setIsValid(true);
+//                $this->addScore($winner, 1);
+
             }
 
 
