@@ -12,8 +12,9 @@ use BilliardsGames\Player\PlayerInterface;
 use BilliardsGames\Player\PlayerIterator;
 use BilliardsGames\Shot\LegalShotTrait;
 use BilliardsGames\Ball\Color\White;
+use BilliardsGames\Ball\BallCollectionInterface;
 
-class Game implements GameInitInterface
+abstract class Game implements GameInitInterface
 {
     use LegalShotTrait;
 
@@ -35,10 +36,12 @@ class Game implements GameInitInterface
         $this->scores[$playerIndex] = 0;
     }
 
+    abstract public function getBalls();
+
     public function rack()
     {
         $cueBall = new White();
-        if ($cueBall && $this->ballCollection) {
+        if ($cueBall && $this->getBalls()) {
             return $this;
         }
     }

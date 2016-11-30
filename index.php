@@ -7,9 +7,38 @@
  */
 
 require 'vendor/autoload.php';
+$config = require 'config/credentials.php';
 require 'config/DBconnection.php';
 
-$game = new \BilliardsGames\Game\Type\PoolEightBall();
+use \Mailjet\Resources;
+
+$mj = new \Mailjet\Client($config['Mailjet']['apikey'], $config['Mailjet']['apisecret']);
+$mj->setSecureProtocol(false);
+
+//$response = $mj->get(Resources::$Contact);
+//if ($response->success())
+//    print_r($response->getData());
+//else
+//    var_dump($response->getStatus());
+
+$body = [
+    'Recipients' => [
+        [
+            'Email' => "deangelis@abv.bg",
+            'Name' => "Mailjet"
+        ]
+    ]
+];
+$id = 1;
+$response = $mj->post(Resources::$NewsletterTest, ['id' => $id, 'body' => $body]);
+
+
+
+
+
+
+
+/*$game = new \BilliardsGames\Game\Type\PoolEightBall();
 $player1 = new \BilliardsGames\Player\Player('Peter', 6);
 $player2 = new \BilliardsGames\Player\Player('George', 9);
 $game->addPlayer($player1);
@@ -19,38 +48,32 @@ $player2details = [$player2->getName(), $player2->getRank()];
 $players = [$player1->getName(),$player2->getName()];
 $firstPlayer = $players[array_rand($players)];
 $breakshot = new \BilliardsGames\Game\Turn\Breakshot($firstPlayer);
-$breakshot->setIsValid(true);
+$breakshot->setIsValid(true);*/
 
-
-//$query = "INSERT INTO Players (Name, Rank) VALUES ($player1->getName(), $player1->getRank())";
-//$query = "SELECT * FROM players WHERE Id = 1";
-//print_r($result = $connection->query($query));
-
-$query = "INSERT INTO Players (Name, Rank) VALUES (?, ?)";
-$result = $connection->prepare($query);
-$result->execute(array('Peter', 6));
-
-
-$game->init();
-//$game->start();
+//$game->init();
 //$game->startGame();
-
-
 //print_r($game->getScores());
 
 
-/*
-$game_8 = new \BilliardsGames\Game\Type\PoolEightBall();
-print_r($game_8->getBalls());
+/* SQL queries
+$query = "CREATE TABLE players (
+id INT(6) AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(30) NOT NULL,
+rank INT(2) NOT NULL,
+email VARCHAR(50),
+reg_date TIMESTAMP
+)";
+$result = $connection->query($query);
 
-$game_9 = new \BilliardsGames\Game\Type\PoolNineBall();
-print_r($game_9->getBalls());
+$query = "INSERT INTO Players (Name, Rank) VALUES (?, ?)";
+$result = $connection->prepare($query);
+$result->execute(array($player1->getName(), $player1->getRank()));
 
-$game_10 = new \BilliardsGames\Game\Type\PoolTenBall();
-print_r($game_10->getBalls());
+$query = "INSERT INTO Players (Name, Rank) VALUES (?, ?)";
+$result = $connection->prepare($query);
+$result->execute(array($player2->getName(), $player2->getRank()));
 
-$snooker = new \BilliardsGames\Game\Type\Snooker();
-print_r($snooker->getBalls());
-$snooker = new \BilliardsGames\Game\Type\Snooker();
-print_r($snooker->getBalls());
+$result = $connection->prepare("SELECT * FROM players WHERE 1");
+$result->execute();
+print_r($result->fetchAll(PDO::FETCH_ASSOC));
 */
