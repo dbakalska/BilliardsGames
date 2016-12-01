@@ -15,25 +15,31 @@ use \Mailjet\Resources;
 $mj = new \Mailjet\Client($config['Mailjet']['apikey'], $config['Mailjet']['apisecret']);
 $mj->setSecureProtocol(false);
 
-//$response = $mj->get(Resources::$Contact);
-//if ($response->success())
-//    print_r($response->getData());
-//else
-//    var_dump($response->getStatus());
+$response = $mj->get(\Mailjet\Resources::$Contact);
+
+//var_dump($response->getReasonPhrase()); exit;
+if ($response->success())
+    print_r($response->getData());
+else
+    var_dump($response->getStatus());
+
+//$body = [
+//    'Recipients' => [
+//        [
+//            'Email' => "deangelis@abv.bg",
+//            'Name' => "Mailjet"
+//        ]
+//    ]
+//];
+//$id = 1;
+//$response = $mj->post(Resources::$NewsletterTest, ['id' => $id, 'body' => $body]);
 
 $body = [
-    'Recipients' => [
-        [
-            'Email' => "deangelis@abv.bg",
-            'Name' => "Mailjet"
-        ]
-    ]
+    'Email' => "dbakalska.it+1@gmail.com",
 ];
-$id = 1;
-$response = $mj->post(Resources::$NewsletterTest, ['id' => $id, 'body' => $body]);
-
-
-
+$response = $mj->post(Resources::$Contact, ['body' => $body]);
+$response->success() && var_dump($response->getData());
+//
 
 
 
@@ -76,4 +82,8 @@ $result->execute(array($player2->getName(), $player2->getRank()));
 $result = $connection->prepare("SELECT * FROM players WHERE 1");
 $result->execute();
 print_r($result->fetchAll(PDO::FETCH_ASSOC));
+
+$result = $connection->prepare("UPDATE players SET email = 'dbakalska.it@gmail.com' WHERE id = 2");
+$result->execute();
 */
+
