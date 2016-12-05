@@ -11,6 +11,7 @@ namespace BilliardsGames\Game\Type;
 
 use BilliardsGames\Ball\BallCollectionInterface;
 use \BilliardsGames\Game\Game;
+use BilliardsGames\Game\Turn\Breakshot;
 use \BilliardsGames\Game\Turn\Turn;
 use \BilliardsGames\Player\Player;
 use BilliardsGames\Player\PlayerIterator;
@@ -31,21 +32,25 @@ class PoolEightBall extends \BilliardsGames\Game\Game implements BallCollectionI
     public function getBalls()
     {
         return [
-            new Color\Yellow,
-            new Color\Blue,
-            new Color\Red,
-            new Color\Pink,
-            new Color\Orange,
-            new Color\Green,
-            new Color\Brown,
+            [   // solid
+                new Color\Yellow,
+                new Color\Blue,
+                new Color\Red,
+                new Color\Pink,
+                new Color\Orange,
+                new Color\Green,
+                new Color\Brown,
+            ],
             new Color\Black,
-            new Color\YellowStriped,
-            new Color\BlueStriped,
-            new Color\RedStriped,
-            new Color\PinkStriped,
-            new Color\OrangeStriped,
-            new Color\GreenStriped,
-            new Color\BrownStriped,
+            [   // striped
+                new Color\YellowStriped,
+                new Color\BlueStriped,
+                new Color\RedStriped,
+                new Color\PinkStriped,
+                new Color\OrangeStriped,
+                new Color\GreenStriped,
+                new Color\BrownStriped,
+            ]
         ];
     }
 
@@ -53,6 +58,8 @@ class PoolEightBall extends \BilliardsGames\Game\Game implements BallCollectionI
     {
         $playerIterator = new PlayerIterator($this->players);
         $gameLoop = new GameLoopIterator($playerIterator);
+        print_r('START OF GAME' . PHP_EOL);
+        $gameLoop->breakshot();
         while ($gameLoop->next()) {
             $turn = $gameLoop->current();
             print_r(PHP_EOL . PHP_EOL . 'TURN: ' . ($gameLoop->key() + 1) . PHP_EOL);
@@ -65,17 +72,17 @@ class PoolEightBall extends \BilliardsGames\Game\Game implements BallCollectionI
 //                $this->getBalls();
 //            }
 
-            $currentPlayer = $turn->getPlayer();
-            if ($currentPlayer->getRank() > 5) {
-                $highestRank = max($currentPlayer->getRank(), $gameLoop->nextPlayer()->getRank());
-                if ($currentPlayer->getRank() == $highestRank) {
+//            $currentPlayer = $turn->getPlayer();
+//            if ($currentPlayer->getRank() > 5) {
+//                $highestRank = max($currentPlayer->getRank(), $gameLoop->nextPlayer()->getRank());
+//                if ($currentPlayer->getRank() == $highestRank) {
 //                    print_r($currentPlayer->getName());
-                }
+//                }
 //                $winner =
 //                    $turn->setIsValid(true);
 //                $this->addScore($winner, 1);
 
-            }
+//            }
 
 
 

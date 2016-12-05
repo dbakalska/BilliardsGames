@@ -7,6 +7,7 @@
  * Time: 4:39 PM
  */
 
+
 namespace BilliardsGames\Player;
 
 class Player implements PlayerInterface
@@ -17,13 +18,27 @@ class Player implements PlayerInterface
     /**
      * Player constructor.
      * @param $name
-     * @param $rank - int range(1,10)
+     * @param $rank
      */
     public function __construct($name, $rank)
     {
         $this->name = $name;
         $this->rank = $rank;
     }
+
+    /**
+     * Player constructor.
+     * @param $name
+     * @param $rank - int range(1,10)
+     */
+/*    public function __construct()
+    {
+        $this->name = readline("Add a name for player: " . PHP_EOL);
+        $this->rank = readline("Add a rank (from 1 to 10) for player: " . PHP_EOL);
+    }*/
+
+
+
 
     /**
      * @return mixed

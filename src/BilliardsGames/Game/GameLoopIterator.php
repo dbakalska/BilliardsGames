@@ -36,20 +36,38 @@ class GameLoopIterator implements \Iterator
         return $this->turns[$this->position];
     }
 
-    public function next()
+    public function breakshot()
     {
         if (empty($this->turns)) {
             print_r('BREAKSHOT' . PHP_EOL);
-            $breakshot = new Breakshot($this->currentPlayer());
+//            $breakshot = new Breakshot($this->currentPlayer());
+
+            $highestRank = max($this->currentPlayer()->getRank(), $this->nextPlayer()->getRank());
+            $this->currentPlayer()->getRank() == $highestRank
+                ? $breakshot = new Breakshot($this->currentPlayer())
+                : $breakshot = new Breakshot($this->nextPlayer());
+
             $breakshot->setIsValid(true);
             $this->turns[$this->position] = $breakshot;
             return $breakshot;
+        }
+    }
+
+    public function next()
+    {
+
+        print_r('SHOT' . PHP_EOL);
+        if ($this->currentPlayer()->getRank() >= 6) {
+            do {
+                $this->turn->setIsValid(true);
+            } while ($this->turn->setIsValid(rand(100,1000) % 2 == 0));
+
         }
         if ($this->current()->getIsFinal()) {
             print_r('END OF TURNS' . PHP_EOL);
             return false;
         }
-        print_r('SHOT' . PHP_EOL);
+
         $nextPlayer = $this->currentPlayer();
         if (!$this->valid()) {
             $nextPlayer = $this->nextPlayer();

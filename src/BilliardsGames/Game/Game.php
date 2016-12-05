@@ -78,6 +78,7 @@ abstract class Game implements GameInitInterface
         $playerIterator = new PlayerIterator($this->players);
         $gameLoop = new GameLoopIterator($playerIterator);
         print_r('START OF GAME' . PHP_EOL);
+        $gameLoop->breakshot();
         while ($gameLoop->next()) {
             $turn = $gameLoop->current();
             print_r(PHP_EOL . PHP_EOL . 'TURN: ' . ($gameLoop->key() + 1) . PHP_EOL);
@@ -86,9 +87,9 @@ abstract class Game implements GameInitInterface
 //            $turn->setIsValid(rand(100,1000) % 2 == 0);
 
             $currentPlayer = $turn->getPlayer();
-            if ($this->getRank() > 5) {
-                print_r('The player is rank ' );
-            }
+//            if ($this->getRank() > 5) {
+//                print_r('The player is rank ' );
+//            }
 
             if ($turn->getIsValid()) {
                 $this->addScore($currentPlayer, 1);
