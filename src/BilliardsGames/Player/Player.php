@@ -14,16 +14,19 @@ class Player implements PlayerInterface
 {
     public $name;
     public $rank;
+    public $balls;
 
     /**
      * Player constructor.
      * @param $name
-     * @param $rank
+     * @param $rank - int range(1,10)
+     * @param $balls - array
      */
-    public function __construct($name, $rank)
+    public function __construct($name, $rank, $balls = [])
     {
         $this->name = $name;
         $this->rank = $rank;
+        $this->balls = $balls;
     }
 
     /**
@@ -72,4 +75,16 @@ class Player implements PlayerInterface
         $this->rank = $rank;
     }
 
+    public function getBalls()
+    {
+        return $this->balls;
+    }
+
+    /**
+     * @param array $balls
+     */
+    public function setBalls(array $balls)
+    {
+        $this->balls = $balls;
+    }
 }

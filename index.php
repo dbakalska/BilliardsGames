@@ -12,26 +12,17 @@ require 'config/DBconnection.php';
 require_once 'readline.php';
 
 $game = new \BilliardsGames\Game\Type\PoolEightBall();
-$player1 = new \BilliardsGames\Player\Player('Didi', 6);
-$player2 = new \BilliardsGames\Player\Player('Pesho', 4);
-$game->addPlayer($player1);
-$game->addPlayer($player2);
-$player1details = [$player1->getName(), $player1->getRank()];
-$player2details = [$player2->getName(), $player2->getRank()];
-$players = [$player2->getName(),$player2->getName()];
-//
-//print_r($player1details);
-//print_r($player2details);
 
-//$firstPlayer = $players[array_rand($players)];
-//$breakshot = new \BilliardsGames\Game\Turn\Breakshot($firstPlayer);
-//$breakshot->setIsValid(true);
+$playersArr = [
+    0 => ['name' => 'Didi', 'rank' => 4],
+    1 => ['name' => 'Peter', 'rank' => 7],
+];
+shuffle($playersArr);
+foreach($playersArr as $pl) {
+    $game->addPlayer(new \BilliardsGames\Player\Player($pl['name'], $pl['rank']));
+}
+
 
 $game->init();
 $game->startGame();
 //print_r($game->getScores());
-
-/*use \Mailjet\Resources;
-
-$mj = new \Mailjet\Client($config['Mailjet']['apikey'], $config['Mailjet']['apisecret']);
-$mj->setSecureProtocol(false);*/

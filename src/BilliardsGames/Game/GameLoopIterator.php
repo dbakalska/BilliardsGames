@@ -40,7 +40,8 @@ class GameLoopIterator implements \Iterator
     {
         if (empty($this->turns)) {
             print_r('BREAKSHOT' . PHP_EOL);
-//            $breakshot = new Breakshot($this->currentPlayer());
+
+            $breakshot = new Breakshot($this->currentPlayer());
 
             $highestRank = max($this->currentPlayer()->getRank(), $this->nextPlayer()->getRank());
             $this->currentPlayer()->getRank() == $highestRank
@@ -48,6 +49,7 @@ class GameLoopIterator implements \Iterator
                 : $breakshot = new Breakshot($this->nextPlayer());
 
             $breakshot->setIsValid(true);
+
             $this->turns[$this->position] = $breakshot;
             return $breakshot;
         }
