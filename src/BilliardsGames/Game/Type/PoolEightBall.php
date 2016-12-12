@@ -94,7 +94,6 @@ class PoolEightBall extends \BilliardsGames\Game\Game implements BallCollectionI
         $playerIterator = new PlayerIterator($this->players);
         $gameLoop = new GameLoopIterator($playerIterator);
         print_r('START OF GAME' . PHP_EOL);
-        $gameLoop->breakshot();
         while ($gameLoop->next()) {
             $turn = $gameLoop->current();
             print_r(PHP_EOL . PHP_EOL . 'TURN: ' . ($gameLoop->key() + 1) . PHP_EOL);
