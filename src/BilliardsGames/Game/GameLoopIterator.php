@@ -52,18 +52,12 @@ class GameLoopIterator implements \Iterator
         }
         print_r('SHOT' . PHP_EOL);
 
-        // give an advantage to the better player until his turn is randomly set to invalid
-        if ($this->currentPlayer()->getRank() >= 6) {
-            do {
-                $this->turn->setIsValid(true);
-            } while ($this->turn->setIsValid(rand(100,1000) % 2 == 0));
-        }
-
         $nextPlayer = $this->currentPlayer();
+        $nextTurn = new Turn($nextPlayer);
         if (!$this->valid()) {
             $nextPlayer = $this->nextPlayer();
         }
-        $nextTurn = new Turn($nextPlayer);
+
         $this->position++;
         $this->turns[$this->position] = $nextTurn;
         return $nextTurn;

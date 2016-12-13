@@ -42,7 +42,7 @@ class PoolEightBall extends \BilliardsGames\Game\Game implements BallCollectionI
                 Color\Green::COLOR,
                 Color\Brown::COLOR,
             ],
-            Color\Black::COLOR,
+            'black' => Color\Black::COLOR,
             'striped' => [
                 Color\YellowStriped::COLOR,
                 Color\BlueStriped::COLOR,
@@ -58,36 +58,24 @@ class PoolEightBall extends \BilliardsGames\Game\Game implements BallCollectionI
     public function getBallOn()
     {
         $allBalls = new BallCollection();
-        for($i = 0; $i <= count($this->getBalls()['solid'])-1;$i++) {
-        $allBalls->addBall($this->getBalls()['solid'][$i]);
-        };
-        for($i = 0; $i <= count($this->getBalls()['striped'])-1;$i++) {
-            $allBalls->addBall($this->getBalls()['striped'][$i]);
-        };
-
-        $key = (rand(0,$allBalls->length()-1));
-        $ballOn = $allBalls->getBall($key);
-
-//        $allBalls->deleteBall($key);
-
-        return strtoupper($ballOn);
-    }
-
-   /* public function removePottedBall()
-    {
-        $solid = $this->getBalls()['solid'];
-        $striped = $this->getBalls()['striped'];
-        $allBalls = array_merge($solid, $striped);
-        $ballOn = $allBalls[array_rand($allBalls)];
-
-        unset($allBalls[array_search($ballOn,$allBalls)]);
-
-        if (in_array($ballOn, $solid)) {
-            unset($solid[array_search($ballOn,$solid)]);
-        } else {
-            unset($striped[array_search($ballOn,$striped)]);
+        foreach ($this->getBalls()['solid'] as $ball) {
+            $allBalls->addBall($ball);
         }
-    }*/
+        foreach ($this->getBalls()['striped'] as $ball) {
+            $allBalls->addBall($ball);
+        }
+
+        $deletedBalls = [];
+        $key = (rand(0,$allBalls->length()-1));
+
+        if (!in_array($key, $deletedBalls)) {
+            $ballOn = $allBalls->getBall($key);
+            print_r("YOUR BALL ON IS " . strtoupper($ballOn) . PHP_EOL);
+            $deletedBalls[] = $key;
+            $allBalls->deleteBall($key);
+        }
+        print_r($allBalls);
+    }
 
     public function startGame()
     {
@@ -98,40 +86,12 @@ class PoolEightBall extends \BilliardsGames\Game\Game implements BallCollectionI
             $turn = $gameLoop->current();
             print_r(PHP_EOL . PHP_EOL . 'TURN: ' . ($gameLoop->key() + 1) . PHP_EOL);
             $currentPlayer = $turn->getPlayer();
+            $turn->setIsValid(true);
+            if ($turn->getIsValid() == true && $gameLoop->key() >= 1) {
+                $this->getBallOn();
 
             // Define random logic to decide if turn is valid
-            $turn->setIsValid(rand(100,1000) % 2 == 0);
-
-            if ($turn->setIsValid(true)) {
-                $this->getBallOn();
-            }
-
-            if ($gameLoop->key() >= 1 && $turn->setIsValid(true)) {
-                $this->getBallOn();
-
-                print_r("YOUR BALL ON IS " . $this->getBallOn() . PHP_EOL);
-
-
-//                $cp = current($this->players);
-//                $cp->balls = $this->getBalls()['solid'];
-//                $np = next($this->players);
-//                $np->balls = $this->getBalls()['striped'];
-            }
-
-
-            /*            $highestRank = max($cp->getRank(), $np->getRank());
-                        var_dump($highestRank);
-
-                        if ($cp->getRank() == $highestRank) {
-                            while ($gameLoop->key() < 3) {
-                                $turn->setIsValid(true);
-
-                                if ($turn->getIsValid()) {
-                                    $this->addScore($currentPlayer, 1);
-                                }
-                            }
-                        }*/
-
+//            $turn->setIsValid(rand(100,1000) % 2 == 0);
 
             $currentPlayerRank = $currentPlayer->getRank();
             if ($nextPlayer = next($this->players)) {
@@ -140,34 +100,38 @@ class PoolEightBall extends \BilliardsGames\Game\Game implements BallCollectionI
             if ($currentPlayerRank > 5) {
                 $highestRank = max($currentPlayerRank, $nextPlayerRank);
 
-                if ($gameLoop->key() >= 3) {
-                    $turn->setIsValid(false);
-                }
-                if ($currentPlayerRank <= $highestRank) {
+                if ($currentPlayer->getRank() == $highestRank) {
 
+                    while ($gameLoop->key() < 3) {
+                        $turn->setIsValid(true);
+
+                        }
+                        if ($turn->getIsValid()) {
+                            $this->addScore($currentPlayer, 1);
+                        }
+                    }
                 }
+
             }
-
 
             if ($gameLoop->key() >= 5) {
                 $turn->setIsFinal(true);
             }
 
+            // When the current player pot his balls, then he has to play the black
 
-//            if ($this->getScores() >= 8) {
-//                $turn->setIsFinal(true);
-//            }
+            /*if ($this->ballCollection == null) {
+                $this->getBalls()['black'];
+                $turn->setIsValid(rand(100,1000) % 2 == 0);
 
+                if ($turn->getIsValid()) {
+                    $win = new Win();
+                    return $win->win();
+                    $turn->setIsFinal(true);
+                    echo "You win!", PHP_EOL;
+                }
+            }*/
 
-
-//            if ($this->getBalls() == Color\Black::COLOR) {
-//                $turn->setIsFinal(true);
-//                var_dump('You win!');
-//            }
-
-
-//            $win = new Win();
-//            return $win->win();
-            }
         }
+    }
 }

@@ -29,7 +29,7 @@ class BallCollection implements BallCollectionInterface
     {
         if (isset($this->balls[$key])) {
             unset($this->balls[$key]);
-            $this->balls = array_values($this->balls);
+//            $this->balls = array_values($this->balls);
         } else {
             throw new KeyInvalidException("Invalid key $key.");
         }
